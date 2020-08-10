@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   before_action :allow_cors, if: :api?
   skip_before_action :verify_authenticity_token, if: :api?
+  before_action :verify_api_authorization, if: :api?, only: [:create, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -64,6 +65,9 @@ class PostsController < ApplicationController
     end
   end
 
+  def options
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -87,5 +91,11 @@ class PostsController < ApplicationController
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
       headers['Access-Control-Allow-Headers'] = '*'
+    end
+
+    def verify_api_authorization
+      if request.headers['Authorization'] != 'pastleo-js-posts-api-secret'
+        head :forbidden
+      end
     end
 end
