@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order("RANDOM()").limit(20).all
+    @posts = Post.order("RANDOM() * id DESC").limit(index_limit).all
   end
 
   # GET /posts/1
@@ -81,6 +81,15 @@ class PostsController < ApplicationController
       else
         params.require(:post)
       end.permit(:title, :author, :description, :content)
+    end
+
+    def index_limit
+      params_limit = params[:limit].to_i
+      if params_limit > 0 && params_limit <= 128
+        params_limit
+      else
+        32
+      end
     end
 
     def api?

@@ -75,6 +75,7 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     erubi (1.9.0)
+    ffaker (2.16.0)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -181,6 +182,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
+    zhconv (0.1.1)
 
 PLATFORMS
   ruby
@@ -189,6 +191,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  ffaker
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg
@@ -200,6 +203,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
+  zhconv
 
 RUBY VERSION
    ruby 2.7.1p83

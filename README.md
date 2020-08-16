@@ -1,24 +1,16 @@
-# README
+# Posts API for pastleo-js-lesson
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+```bash
+bundle install
 
-* Ruby version
+cp config/database.example.yml config/database.yml
+# edit config/database.yml if needed
 
-* System dependencies
+rake db:create
+rake db:migrate
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# generate lorem posts by ffaker+zhconv
+rake db:seed
+```
