@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :allow_cors, if: :api?
   skip_before_action :verify_authenticity_token, if: :api?
   before_action :verify_api_authorization, if: :api?, only: [:create, :update, :destroy]
+  before_action :delay
 
   # GET /posts
   # GET /posts.json
@@ -105,6 +106,12 @@ class PostsController < ApplicationController
     def verify_api_authorization
       if request.headers['Authorization'] != 'pastleo-js-posts-api-secret'
         head :forbidden
+      end
+    end
+
+    def delay
+      if params.has_key?(:delay)
+        sleep 3
       end
     end
 end
